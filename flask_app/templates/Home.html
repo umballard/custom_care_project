@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/da4859adf0.js" crossorigin="anonymous"></script>
+
+    <title>Custom Care For Critters</title>
+</head>
+<body>
+  <ul>
+    <li><a class="active" href="/"><i class="fa fa-fw fa-home"></i>Home</a></li> 
+    <li><a  href="/"><i class="fas fa-user-plus"></i>New Account</a></li> 
+    <li><a href="/user_login"><i class="far fa-user-circle"></i>Login</a></li>
+    <li style="float:right"><a href=""><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li>
+    <div class="w3-panel w3-pink">
+      <h1 class="w3-opacity">
+      <b>Welcome to Custom Care For Critters</b></h1>
+    </div>
+  </ul>
+  <div class="right_align">
+    <h2>
+      <u> 
+        Services We Offer
+      </u>
+    </h2>
+    <h4>
+      <dl>
+        <dd>-Grooming</dd>
+        <dd>-Pet Sitting</dd>
+        <dd>-Walking</dd>
+        <dd>-Scheduled Feeding</dd>
+        <dd>-Medication Administration</dd>
+        <dd>-Vet Visits</dd>
+        <dd><b>And More!</b></dd>
+      </dl>
+    </h4>
+    
+  </div>
+
+    <div>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+  </body>
+  </html>
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

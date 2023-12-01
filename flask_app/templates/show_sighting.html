@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Sasquatch Websightings</title>
+</head>
+<body>
+  <div class="navbar">
+    <h1> Hello, <u>{{session.first_name}}</u>. Welcome to Sasquatch Websightings- View Sighting Report</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <a class="active" href="/all_reports"><i class="fa fa-fw fa-home"></i>All Reports</a>
+      <a class="active" href="/logout">Logout</a>
+    </div>
+        <table>
+            </div>
+            <div class="sighting_card">
+            <h1>{{report.location}}</h1> 
+            <h2>on {{report.date_of_sighting}}</h2>
+            <h3 class="title">What Happened:</h3>
+            <p>{{report.what_happened}}</p>
+            <p>Number of Sasquatches: {{report.number_of_sasquatches}}</p>
+            <h3>Reported by: {{report.first_name}}</h3>
+          </div>
+        </body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

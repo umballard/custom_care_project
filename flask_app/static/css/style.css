@@ -1,0 +1,216 @@
+input[type=text],textarea{
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+  }
+
+  input[type=password]{
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+  }
+  
+
+  label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+  }
+  
+
+  input[type=submit] {
+	background-color: #164735;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+	margin-top: 20px;
+  }
+  
+
+  .container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+	margin-top: 200px;
+  }
+  
+
+  .col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+  }
+  
+
+  .col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+  }
+  
+
+  .row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+  
+
+  @media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+	  width: 100%;
+	  margin-top: 0;
+	}
+  }
+
+  /*-------------------- Home page------------------------------ */
+
+  .right_align{
+	display:inline-table;
+	text-align: center;
+	justify-content: right;
+	border: solid black;
+	border-radius: 5px;
+	width: fit-content;
+	background-color: rgba(0, 0, 0, 0.665);
+	color:goldenrod;
+	padding: 20px;
+	font-size: larger;
+	position: ;
+  }
+  /*---------------------navbar---------------------------------*/
+  
+  h1{text-align: center;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-style: oblique;
+	font-kerning: initial;
+	text-shadow: 1px 1px 9 #444;
+}
+
+  ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: slategray;
+  }
+
+  li {
+	float: left;
+	border-right: 1px solid #bbb;
+  }
+  li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: #164735;
+  }
+
+  li:last-child {
+	border-right: none;
+  }
+  
+
+  
+
+  li a:hover {
+	background-color: #111;
+  }
+  
+
+  .active {
+	background-color:rgb(218, 189, 152);
+	color: #111;
+  }
+  
+
+  @media screen and (max-width: 500px) {
+	.navbar a {
+	  float: none;
+	  display: block;
+	}
+  } 
+body{
+	background-image: url(../images/animal_print.jpg)
+}
+  /*---------------------Pet Profile--------------------------*/
+  .sighting_card {
+	font-size: large;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 600px;
+	height: 350px;
+	max-height: 700px;
+	margin: auto;
+	text-align: center;
+	align-items: start;
+  }
+  
+  .title {
+	color: black;
+	font-size: 18px;
+  }
+
+h3{color: gray}
+  
+  a {
+	text-decoration: none;
+	font-size: 22px;
+	color: black;
+  }
+  
+
+
+  /*-------------Pets Table------------*/
+td{
+	vertical-align: middle;
+}
+
+/*-------------table action buttons------------------------------------*/
+.button{
+	border-radius: 4px;
+	border: none;
+	color: #FFFFFF;
+	background-color: #1e4135;
+	text-align: left;
+	font-size: 15px;
+	padding: 20px;
+	width: 80px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+  }
+  
+  .button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+  }
+  
+  .button span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+  }
+  
+  .button:hover span {
+	padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+	opacity: 1;
+	right: 0;
+  }
