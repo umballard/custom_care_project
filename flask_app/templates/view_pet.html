@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+
+    <script src="https://kit.fontawesome.com/da4859adf0.js" crossorigin="anonymous"></script>
+
+    <title>Custom Care For Critters</title>
+</head>
+<body>
+</head>
+<ul>
+    <li><a  href="/dashboard"><i class="fa fa-fw fa-home"></i>Dashboard</a></li> 
+    <li><a href="/add_pet"><i class='fas fa-paw' style='font-size:24px'></i>Add Pet</a></li>
+    <li><a href=""><i class="far fa-user-circle"></i>My Account</a></li>
+    <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li>
+    <li style="float:right"><a href=""><i class='fas fa-sign-out-alt' style='font-size:24px'></i>Logout</a></li>
+    
+</ul>
+<h1 class="welcome_user">Selected Pets Profile <i class="far fa-user-circle"></i><img src="" alt=""></h1>
+<h4 class="pet_table_label"><u>Monthly Services</u></h4>
+
+<table class="pet_services">
+    <tr>
+      <th>Service</th>
+      <th>Frequency</th>
+      <th>Comments</th>
+    </tr>
+    <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Alfreds Futterkiste</td>
+      <td>Alfreds Futterkiste</td>
+    </tr>
+    <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Alfreds Futterkiste</td>
+        <td>Alfreds Futterkiste</td>
+      </tr>
+    </table>
+    <form class="update_pet" action="">
+        <label for="fname">Name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Breed:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <label for="lname">Color:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <label for="lname">Date of Birth:</label><br>
+        <input type="date" id="lname" name="lname" value="Doe"><br><br>
+        <label for="alerts">Alerts</label>
+        <textarea name="alerts"cols="30" rows="10"></textarea>
+        <input type="submit" value="Update">
+    </form>
+</html>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

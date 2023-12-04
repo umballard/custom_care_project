@@ -14,58 +14,68 @@
     <title>Custom Care For Critters</title>
 </head>
 <body>
-    <ul>
-      <li><a href="/"><i class="fa fa-fw fa-home"></i>Home</a></li> 
-      <li><a class="active" href="/"><i class="fas fa-user-plus"></i>New Account</a></li> 
-      <li><a href="/login"><i class="far fa-user-circle"></i>Login</a></li>
-      <li style="float:right"><a href=""><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li> 
-      <h1>Welcome to Custom Care For Critters</h1>
-    </ul>
+  <ul>
+    <li><a  href="/dashboard"><i class="fa fa-fw fa-home"></i>Dashboard</a></li> 
+    <li><a class="active" href="/add_pet"><i class='fas fa-paw' style='font-size:24px'></i>Add Pet</a></li>
+    <li><a href=""><i class="far fa-user-circle"></i>My Account</a></li>
+    <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li>
+    <li style="float:right"><a href="/"><i class='fas fa-sign-out-alt' style='font-size:24px'></i>Logout</a></li>
+</ul>
+    <a href="#" class="btn btn-danger"><b>Delete Pet</b></a>
   <div class="container">
-    <h1 class="header">Create an Account</h1>
+    <h1 class="header">Add a Pet</h1>
     <form action="/" method="POST">
       <div class="row">
         <div class="col-25">
-          <label for="fname">First Name</label>
+          <label for="fname">Name</label>
         </div>
         <div class="col-75">
-          <input type="text" id="fname" name="first_name" placeholder="Your first name..">
+          <input type="text" id="fname" name="pet_name" placeholder="what does he/she respond to?..">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="lname">Last Name</label>
+          <label for="">Breed</label>
         </div>
         <div class="col-75">
-          <input type="text" id="lname" name="last_name" placeholder="Your last name..">
+          <input type="text" id="lname" name="breed" placeholder="breed of your pet..">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="country">Email</label>
+          <label for="country">Color</label>
         </div>
         <div class="col-75">
-          <input type="text" id="email" name="email" placeholder="Your Email ..">
+          <input type="text" id="color" name="color" placeholder="color or your pet ..">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="country">Password</label>
+          <label for="country">Weight</label>
         </div>
         <div class="col-75">
-           <input type="password" id="password" name="password" placeholder="Password..">
+           <input type="password" id="weight" name="weight" placeholder="current weight of your pet..">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="confirm_password">Confirm Password</label>
+          <label for="DOB">Date of Birth</label>
         </div>
         <div class="col-75">
-           <input type="password" id="password" name="confirm_password" placeholder="Confirm Password..">
+           <input type="date" id="DOB" name="DOB">
         </div>
       </div>
       <div class="row">
-        <input type="submit" value="Submit">
+        <div class="col-25">
+          <label for="alerts">Alerts***</label>
+        </div>
+        <div class="col-75">
+           <textarea name="alerts"cols="30" rows="10" placeholder="please enter any alerts we should be aware of during care of your pet..."></textarea>
+           <p><i>***Alerts should include any allergies including type and severity, temperments r/t food, people, play etc.</i></p>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" value="Create Pet Profile">
       </div>
     </form>
   </div> 

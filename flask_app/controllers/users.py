@@ -18,8 +18,25 @@ def create_new_user():
 def index():
     return render_template('Home.html')
 
+@app.route('/login')
+def login():
+    return render_template('user_login.html')
 
+@app.route('/about_us')
+def about_us():
+    return render_template('about_us.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/add_pet')
+def create_pet():
+    return render_template('add_pet.html')
+
+@app.route('/view_pet')
+def view_pet():
+    return render_template('view_pet.html')
 # Update Users Controller
 
 
