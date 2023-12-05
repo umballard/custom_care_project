@@ -4,31 +4,67 @@ from flask_app.models import user # import entire file, rather than class, to av
 # As you add model files add them the the import above
 # This file is the second stop in Flask's thought process, here it looks for a route that matches the request
 
+@app.route('/')
+def index():
+    return render_template('Home.html')
+
 # Create Users Controller
+
+@app.route('/create', methods=['GET', 'POST'])
+def create_user():
+
+    if request.method == 'GET':
+        return render_template('create_user.html')
+
+    if request.method == 'POST':
+       if user.User.create_user(request.form):
+        print(session)
+        # if 'user_id' not in session:
+        #     return redirect('/')
+        return redirect('/dashboard')
+       print(session)
+       return redirect('/create')
+
+#login/logout
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+       return render_template('user_login.html')
+
+    if request.method == 'POST':
+        if user.User.login(request.form):
+            print(session)
+            # if 'user_id' not in session:
+            #     return redirect('/')
+            return redirect('/dashboard')
+        print(session)
+        return redirect('/login')
+        
+@app.route('/logout')
+def logout():
+    session.clear()
+    print(session)
+    return redirect('/')
 
 
 
 # Read Users Controller
+@app.route('/dashboard')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect('/')
+    return render_template('dashboard.html')
 
 @app.route('/create')
 def create_new_user():
     return render_template('create_user.html')
 
-@app.route('/')
-def index():
-    return render_template('Home.html')
-
-@app.route('/login')
-def login():
-    return render_template('user_login.html')
 
 @app.route('/about_us')
 def about_us():
     return render_template('about_us.html')
 
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
 
 @app.route('/add_pet')
 def create_pet():
@@ -37,6 +73,14 @@ def create_pet():
 @app.route('/view_pet')
 def view_pet():
     return render_template('view_pet.html')
+
+@app.route('/user_account')
+def user_profile():
+    return render_template('view_user_account.html')
+
+@app.route('/add_service')
+def add_service():
+    return render_template('add_service.html')
 # Update Users Controller
 
 

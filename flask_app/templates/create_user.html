@@ -16,17 +16,17 @@
 <body>
     <ul>
       <li><a href="/"><i class="fa fa-fw fa-home"></i>Home</a></li> 
-      <li><a class="active" href="/"><i class="fas fa-user-plus"></i>New Account</a></li> 
+      <li><a class="active" href="/create"><i class="fas fa-user-plus"></i>New Account</a></li> 
       <li><a href="/login"><i class="far fa-user-circle"></i>Login</a></li>
-      <li style="float:right"><a href=""><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li> 
+      <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i>About Us</a></li> 
       <h1>Welcome to Custom Care For Critters</h1>
     </ul>
   <div class="container">
     <h1 class="header">Create an Account</h1>
-    <form action="/" method="POST">
+    <form action="/create" method="POST">
       <div class="row">
         <div class="col-25">
-          <label for="fname">First Name</label>
+          <label for="first_name">First Name</label>
         </div>
         <div class="col-75">
           <input type="text" id="fname" name="first_name" placeholder="Your first name..">
@@ -34,15 +34,15 @@
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="lname">Last Name</label>
+          <label for="last_name">Last Name</label>
         </div>
         <div class="col-75">
-          <input type="text" id="lname" name="last_name" placeholder="Your last name..">
+          <input type="text" id="last_name" name="last_name" placeholder="Your last name..">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="country">Email</label>
+          <label for="email">Email</label>
         </div>
         <div class="col-75">
           <input type="text" id="email" name="email" placeholder="Your Email ..">
@@ -66,18 +66,17 @@
       </div>
       <div class="row">
         <input type="submit" value="Submit">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+              <strong>- {{message}}</strong>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
       </div>
     </form>
   </div> 
-    <div>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-            <p>{{message}}</p>
-        {% endfor %}
-      {% endif %}
-      {% endwith %}
-    </div>
+
   </body>
   </html>
 <!-- Format for adding images -->
