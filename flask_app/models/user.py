@@ -58,6 +58,21 @@ class User:
             return this_user
         return False
 
+    @classmethod
+    def get_user_by_id(cls, id):
+        data = {'id' : id }
+        query = """
+            SELECT * FROM
+                users
+                WHERE id = %(id)s
+                ;"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        if results:
+            user_profile = cls(results[0])
+            return user_profile
+        return False
+
+
 
     #login
     @classmethod

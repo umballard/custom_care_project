@@ -24,13 +24,13 @@
 </ul>
   <div class="container_add_pet">
     <h1 class="header">Add a Pet</h1>
-    <form action="/" method="POST">
+    <form action="/add_pet" method="POST">
       <div class="row">
         <div class="col-25">
-          <label for="fname">Name</label>
+          <label for="name">Name</label>
         </div>
         <div class="col-75">
-          <input type="text" id="fname" name="pet_name" placeholder="what does he/she respond to?..">
+          <input type="text" id="fname" name="name" placeholder="what does he/she respond to?..">
         </div>
       </div>
       <div class="row">
@@ -54,15 +54,15 @@
           <label for="country">Weight</label>
         </div>
         <div class="col-75">
-           <input type="password" id="weight" name="weight" placeholder="current weight of your pet..">
+           <input type="number" id="weight" name="weight" placeholder="pets current weight in lbs..enter numerical value only">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="DOB">Date of Birth</label>
+          <label for="date_of_birth">Date of Birth</label>
         </div>
         <div class="col-75">
-           <input type="date" id="DOB" name="DOB">
+           <input type="date" id="DOB" name="date_of_birth">
         </div>
       </div>
       <div class="row">
@@ -76,18 +76,16 @@
       </div>
       <div class="row">
         <input type="submit" value="Create Pet Profile">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+              <strong>- {{message}}</strong>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
       </div>
     </form>   
   </div> 
-    <div>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-            <p>{{message}}</p>
-        {% endfor %}
-      {% endif %}
-      {% endwith %}
-    </div>
   </body>
   </html>
 <!-- Format for adding images -->

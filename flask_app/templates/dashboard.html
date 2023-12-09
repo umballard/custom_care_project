@@ -23,7 +23,7 @@
     <li><a class="active" href="/dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a></li> 
     <li><a href="/add_pet"><i class='fas fa-paw' style='font-size:24px'></i> Add Pet</a></li>
     <li><a href="/add_service"><i class='fas fa-cart-plus' style='font-size:24px'></i> Add Service</a></li>
-    <li><a href="/user_account"><i class="far fa-user-circle"></i> My Account</a></li>
+    <li><a href="/user_account/{{session.user_id}}"><i class="far fa-user-circle"></i> My Account</a></li>
     <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i> About Us</a></li>
     <li style="float:right"><a href="/logout"><i class='fas fa-sign-out-alt' style='font-size:24px'></i> Logout</a></li>
     
@@ -41,31 +41,26 @@
                   </tr>
                 </thead>
                 <tbody>
-                {% for report in all_reports %}
+                {% for pet in all_pets %}
                   <tr>
                     <td>
-                        {{report.location}}
+                        {{pet.name}}
                     </th>
                     <td>
-                        {{report.date_of_sighting}}
+                        {{pet.breed}}
                     </td>
                     <td>
-                        {{report.posted_by_user.first_name}}
+                        {{pet.alerts}}
                     </td>
                     <td>
-                        <a href="/view_sighting/{{report.sighting_id}}">
+                        <a href="/view_pet/{{pet.pet_id}}">
                             <button class="button"><span> View </span></button>
                         </a>
-                        {% if report.posted_by_user.id == session['user_id'] %}
-                        <a href="/all_reports/edit/{{report.sighting_id}}">
-                            <button class="button"><span> Edit </span></button>
-                        </a>
-                        <a href="/all_reports/delete/{{report.sighting_id}}">
-                            <button class="button" onclick="return confirm ('Are you sure you want to delete Sasquach Report from: {{report.location}}')"><span> Delete </span></button>
+                        <a href="/dashboard/delete/{{pet.pet_id}}">
+                            <button class="button" onclick="return confirm ('Are you sure you want to delete your pet?: {{pet.name}}')"><span> Delete </span></button>
 
                         </a>
                     </td>
-                        {% endif %}
                   </tr>
                 {% endfor %}
                 </tbody>

@@ -1,85 +1,51 @@
 from flask_app import app
 from flask import render_template, redirect, request, session
-from flask_app.models import user, pet # import entire file, rather than class, to avoid circular imports
+from flask_app.models import pet # import entire file, rather than class, to avoid circular imports
 # As you add model files add them the the import above
 # This file is the second stop in Flask's thought process, here it looks for a route that matches the request
 
-@app.route('/')
-def index():
-    return render_template('Home.html')
 
 # Create Users Controller
-
-@app.route('/create', methods=['GET', 'POST'])
-def create_user():
-
-    if request.method == 'GET':
-        return render_template('create_user.html')
-
-    if request.method == 'POST':
-       if user.User.create_user(request.form):
-        print(session)
-        # if 'user_id' not in session:
-        #     return redirect('/')
-        return redirect('/dashboard')
-       print(session)
-       return redirect('/create')
-
-#login/logout
-
-@app.route('/login', methods = ['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-       return render_template('user_login.html')
-
-    if request.method == 'POST':
-        if user.User.login(request.form):
-            print(session)
-            # if 'user_id' not in session:
-            #     return redirect('/')
-            return redirect('/dashboard')
-        print(session)
-        return redirect('/login')
-        
-@app.route('/logout')
-def logout():
-    session.clear()
-    print(session)
-    return redirect('/')
-
-
-
-# Read Users Controller
-@app.route('/dashboard')
-def dashboard():
+@app.route('/add_pet', methods = ['GET', 'POST'])
+def create_pet():
     if 'user_id' not in session:
         return redirect('/')
-    all_pets = pet.Pet.get_all_pets_owned_by_user()
-    return render_template('dashboard.html', all_pets = all_pets)
 
-@app.route('/user_account/<int:id>')
-def user_profile(id):
-    if 'user_id' not in session:\
-        return redirect ('/')
-    profile = user.User.get_user_by_id(id)
-    return render_template('view_user_account.html', profile = profile)
+    if request.method == 'GET':
+        return render_template('add_pet.html')
+    
+    if request.method == 'POST':
+        if pet.Pet.add_pet(request.form):
+            return redirect ('/dashboard')
+    return redirect('/add_pet')
 
+# Read Users Controller
 
-@app.route('/about_us')
-def about_us():
-    return render_template('about_us.html')
+@app.route('/view_pet/<int:pet_id>')
+def show_pet(pet_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    one_pet = pet.Pet.get_pet_by_pet_id(pet_id)
+    return render_template('view_pet.html', pet = one_pet)
 
+# # Update Users Controller
 
-
-@app.route('/add_service')
-def add_service():
-    return render_template('add_service.html')
-# Update Users Controller
-
-
+@app.route('/update_pet', methods=['POST'])
+def update_pet():
+        if 'user_id' not in session:
+            return redirect('/')
+        if pet.Pet.update_pet(request.form):
+            return redirect(f'/view_pet/{request.form["pet_id"]}')
+        return redirect(f'/view_pet/{request.form["pet_id"]}')
 
 # Delete Users Controller
 
+@app.route('/dashboard/delete/<int:pet_id>')
+def delete_pet(pet_id):
+    if 'user_id' not in session: 
+        return redirect('/')
+    pet.Pet.delete_pet(pet_id)
+    return redirect('/dashboard')
 
 # Notes:
 # 1 - Use meaningful names
