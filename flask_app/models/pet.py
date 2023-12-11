@@ -22,8 +22,8 @@ class Pet:
         self.alerts = data['alerts']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.user_id = data['users_id']
-        self.pet_owner  = data = None
+        self.users_id = data['users_id']
+        self.pet_owner = None
 
 
 
@@ -34,25 +34,32 @@ class Pet:
         if not cls.validate_pet(data):
             return False
         data = data.copy()
-        data['user_id'] = session['user_id']
-        query="""
+        data['users_id'] = session['users_id']
+        print(data)
+        query = """
             INSERT INTO pets 
             (name, breed, color, weight, date_of_birth, alerts, users_id)
             VALUES
-            (%(name)s, %(breed)s, %(color)s, %(weight)s, %(date_of_birth)s, %(alerts)s, %(user_id)s)
+            (%(name)s, %(breed)s, %(color)s, %(weight)s, %(date_of_birth)s, %(alerts)s, %(users_id)s)
             ;"""
-        report_sighting = connectToMySQL(cls.db).query_db(query,data)
-        return report_sighting
+        pet_service_id = connectToMySQL(cls.db).query_db(query,data)
+        session['pet_id'] = pet_service_id
+        print(pet_service_id,'!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print(session)
+        return pet_service_id
     
     # Read Pet Models
 
     @classmethod
-    def get_all_pets_owned_by_user(cls):
+    def get_all_pets_created_by_user(cls):
+        users_id = session['users_id']
         query = """
             SELECT * FROM pets
             JOIN users on users.id = pets.users_id
+            WHERE users_id = %(id)s
             ;"""
-        results = connectToMySQL(cls.db).query_db(query)
+        data = {'id' : users_id }
+        results = connectToMySQL(cls.db).query_db(query,data)
         all_owners_pets = []
         for result in results:
             one_pet = cls(result)
@@ -68,7 +75,6 @@ class Pet:
             pet_owner = user.User(one_pet_user_data)
             one_pet.pet_owner = pet_owner
             all_owners_pets.append(one_pet)
-            print(all_owners_pets)
         return all_owners_pets
     
     @classmethod
@@ -80,24 +86,7 @@ class Pet:
             ;"""
         data = {'id' : pet_id }
         results = connectToMySQL(cls.db).query_db(query,data)
-        print(results)
         return results[0]
-    
-    @classmethod
-    def get_user_id_from_pet(cls, pet_id):
-        data = {
-            'id' : pet_id
-        }
-        query = """
-            SELECT users_id
-            FROM pets
-            WHERE pet_id = %(id)s
-            ;"""
-        result = connectToMySQL(cls.db).query_db(query,data)
-        user_id = result[0]['users_id']
-        print(result, user_id)
-        return user_id
-        
     
 
     # Update Pet Models
@@ -105,8 +94,6 @@ class Pet:
 
     @classmethod
     def update_pet(cls,data):
-        if session['user_id'] != cls.get_user_id_from_pet(data['pet_id']):
-            return False
         if not cls.validate_pet(data):
             return False
         data = {
@@ -127,18 +114,18 @@ class Pet:
             weight = %(weight)s,
             date_of_birth = %(date_of_birth)s,
             alerts = %(alerts)s
-            WHERE pet_id = %(id)s
+            WHERE pet_id = %(pet_id)s
             ;"""
+        print(data,query)
         connectToMySQL(cls.db).query_db(query, data)
-        print(query)
         return True
 
     # Delete Pet Models
     @classmethod
     def delete_pet(cls,pet_id):
-        if session['user_id'] != cls.get_user_id_from_pet(pet_id):
-            print(session,pet_id)
-            return False
+        # if session['users_id'] != cls.get_users_id_from_pet(pet_id):
+        #     print(session,pet_id)
+        #     return False
         data = {
                 'id' : pet_id
             }
@@ -147,7 +134,6 @@ class Pet:
             WHERE pet_id = %(id)s
             ;"""
         connectToMySQL(cls.db).query_db(query,data)
-        print(data)
         return True
     
     #pet_validations

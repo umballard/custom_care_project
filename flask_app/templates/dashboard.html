@@ -22,9 +22,6 @@
 <ul>
     <li><a class="active" href="/dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a></li> 
     <li><a href="/add_pet"><i class='fas fa-paw' style='font-size:24px'></i> Add Pet</a></li>
-    <li><a href="/add_service"><i class='fas fa-cart-plus' style='font-size:24px'></i> Add Service</a></li>
-    <li><a href="/user_account/{{session.user_id}}"><i class="far fa-user-circle"></i> My Account</a></li>
-    <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i> About Us</a></li>
     <li style="float:right"><a href="/logout"><i class='fas fa-sign-out-alt' style='font-size:24px'></i> Logout</a></li>
     
 </ul>
@@ -36,7 +33,7 @@
                   <tr>
                     <th scope="col">Pet Name</th>
                     <th scope="col">Breed</th>
-                    <th scope="col">Alerts</th>
+                    <th scope="col">Reminders</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -47,7 +44,7 @@
                         {{pet.name}}
                     </th>
                     <td>
-                        {{pet.breed}}
+                      {{pet.breed}}
                     </td>
                     <td>
                         {{pet.alerts}}

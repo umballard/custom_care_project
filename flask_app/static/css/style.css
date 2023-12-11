@@ -123,6 +123,16 @@ input[type=text],textarea{
 
   /*-------------------- Home page------------------------------ */
 
+.home_dog{
+	position: relative;
+	top: 530px;
+	left: 400px;
+	border: solid;
+	border-radius: 5px;
+	width: 25%;
+	opacity: 90%;
+}
+
   dl{
 	font-size: 40px;
 	text-align: center;
@@ -225,7 +235,7 @@ body{
 	text-align: left;
 	font-size: 15px;
 	padding: 20px;
-	width: 80px;
+	width: 90px;
 	transition: all 0.5s;
 	cursor: pointer;
 	margin: 5px;
@@ -430,9 +440,10 @@ td{
 	background-color: whitesmoke;
 	width: 40%;
 	position: absolute;
-	right: 400px;
+	right: 1000px;
 	top: 320px;
 	padding: 20px;
+	border-radius: 5px;
 }
 
 /* -----------toggle switch------------------------ */

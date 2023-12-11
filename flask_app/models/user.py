@@ -19,6 +19,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.pets = []
         # What changes need to be made above for this project?
         #What needs to be added here for class association?
 
@@ -37,10 +38,11 @@ class User:
             VALUES
             (%(first_name)s, %(last_name)s, %(email)s, %(password)s)
             ;"""
-        user_id = connectToMySQL(cls.db).query_db(query,user_data)
-        session['user_id'] = user_id
+        users_id = connectToMySQL(cls.db).query_db(query,user_data)
+        users_id = session['id']
         session['first_name'] = user_data['first_name']
-        return user_id
+        print('users_id')
+        return users_id
 
 
     # Read Users Models
@@ -80,7 +82,7 @@ class User:
         this_user = cls.get_user_by_email(data['email'])
         if this_user:
             if bcrypt.check_password_hash(this_user.password, data['password']):
-                session['user_id'] = this_user.id
+                session['users_id'] = this_user.id
                 session['first_name'] = this_user.first_name
                 return True
         flash('Incorrect Login Information')

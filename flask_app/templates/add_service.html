@@ -18,22 +18,37 @@
     <li><a  href="/dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a></li> 
     <li><a  href="/add_pet"><i class='fas fa-paw' style='font-size:24px'></i> Add Pet</a></li>
     <li><a class="active" href="/add_service"><i class='fas fa-cart-plus' style='font-size:24px'></i> Add Service</a></li>
-    <li><a href="/user_account"><i class="far fa-user-circle"></i> My Account</a></li>
     <li style="float:right"><a href="/about_us"><i class='fas fa-paw' style='font-size:24px'></i> About Us</a></li>
     <li style="float:right"><a href="/"><i class='fas fa-sign-out-alt' style='font-size:24px'></i> Logout</a></li>
 </ul>
 <div  class="container_add_service">
   <h1 class="header">Add a Service</h1>
-  <form action="/action_page.php">
-    <label for="fname">Pets:</label>
+  <form action="/add_service" method="POST">
+    <h5>Pets:</h5>
+    <label for="name">
+      {%for pet in all_pets%}
+      {{pet.name}}
+    </label>
       <label class="switch">
-        <input type="checkbox">
+        <input type="checkbox" value="{{pet.pet_id}}">
         <span class="slider round"></span>
       </label>
-    <select class="select_service" id="country" name="country" multiple>
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
+      {%endfor%}
+      <label for="service">Service :</label>
+    <select class="select_service" name="service_name" multiple>
+      <option value="grooming">Grooming</option>
+      <option value="pet_sitting">Pet Sitting</option>
+      <option value="walk">Walk</option>
+      <option value="feeding_am">Morning Feeding</option>
+      <option value="feeding_pm">Afternoon/Evening Feeding</option>
+      <option value="medications">Medication(s)</option>
+      <option value="vet_visit">Vet Visit</option>
+    </select>
+    <label class="name" for="frequency">Frequency :</label>
+    <select class="select_service" name="frequency" multiple>
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
     </select>
     <p>
       ***

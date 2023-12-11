@@ -17,13 +17,9 @@ def create_user():
         return render_template('create_user.html')
 
     if request.method == 'POST':
-       if user.User.create_user(request.form):
-        print(session)
-        # if 'user_id' not in session:
-        #     return redirect('/')
-        return redirect('/dashboard')
-       print(session)
-       return redirect('/create')
+        if user.User.create_user(request.form):
+            return redirect('/login')
+    return redirect('/create')
 
 #login/logout
 
@@ -34,17 +30,12 @@ def login():
 
     if request.method == 'POST':
         if user.User.login(request.form):
-            print(session)
-            # if 'user_id' not in session:
-            #     return redirect('/')
             return redirect('/dashboard')
-        print(session)
         return redirect('/login')
         
 @app.route('/logout')
 def logout():
     session.clear()
-    print(session)
     return redirect('/')
 
 
@@ -52,18 +43,11 @@ def logout():
 # Read Users Controller
 @app.route('/dashboard')
 def dashboard():
-    if 'user_id' not in session:
+    print(session)
+    if 'users_id' not in session:
         return redirect('/')
-    all_pets = pet.Pet.get_all_pets_owned_by_user()
+    all_pets = pet.Pet.get_all_pets_created_by_user()
     return render_template('dashboard.html', all_pets = all_pets)
-
-@app.route('/user_account/<int:id>')
-def user_profile(id):
-    if 'user_id' not in session:\
-        return redirect ('/')
-    profile = user.User.get_user_by_id(id)
-    return render_template('view_user_account.html', profile = profile)
-
 
 @app.route('/about_us')
 def about_us():
@@ -71,9 +55,6 @@ def about_us():
 
 
 
-@app.route('/add_service')
-def add_service():
-    return render_template('add_service.html')
 # Update Users Controller
 
 
