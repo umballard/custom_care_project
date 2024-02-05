@@ -44,7 +44,7 @@ class Pet:
             ;"""
         pet_service_id = connectToMySQL(cls.db).query_db(query,data)
         session['pet_id'] = pet_service_id
-        print(pet_service_id,'!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print(pet_service_id)
         print(session)
         return pet_service_id
     

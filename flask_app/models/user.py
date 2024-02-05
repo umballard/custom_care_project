@@ -39,7 +39,7 @@ class User:
             (%(first_name)s, %(last_name)s, %(email)s, %(password)s)
             ;"""
         users_id = connectToMySQL(cls.db).query_db(query,user_data)
-        users_id = session['id']
+        session['id'] = users_id
         session['first_name'] = user_data['first_name']
         print('users_id')
         return users_id

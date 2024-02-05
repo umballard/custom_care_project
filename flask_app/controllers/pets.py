@@ -7,7 +7,7 @@ from flask_app.models import pet
 # This file is the second stop in Flask's thought process, here it looks for a route that matches the request
 
 
-# Create Users Controller
+# Create Pet Controller
 
 @app.route('/add_pet', methods = ['GET', 'POST'])
 def create_pet():
@@ -19,11 +19,13 @@ def create_pet():
     
     if request.method == 'POST':
         if pet.Pet.add_pet(request.form):
+            file = request.files['file']
+            file.save(f'uploads/{file.filename}')
             return redirect ('/dashboard')
     return redirect('/add_pet')
 
 
-# Read Users Controller
+# Read Pet Controller
 
 @app.route('/view_pet/<int:pet_id>')
 def show_pet(pet_id):
@@ -36,17 +38,19 @@ def show_pet(pet_id):
 
 # need if statement to protect against error if viewing pet with no services(tuple index out of range)
 
-# # Update Users Controller
+# # Update Pet Controller
 
 @app.route('/update_pet', methods=['POST'])
 def update_pet():
         if 'users_id' not in session:
             return redirect('/')
         if pet.Pet.update_pet(request.form):
+            file = request.files['file']
+            file.save(f'uploads/{file.filename}')
             return redirect(f'/view_pet/{request.form["pet_id"]}')
         return redirect(f'/view_pet/{request.form["pet_id"]}')
 
-# Delete Users Controller
+# Delete Pet Controller
 
 @app.route('/dashboard/delete/<int:pet_id>')
 def delete_pet(pet_id):
